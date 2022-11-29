@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "./Navbar";
-import PizzaCard from "./PizzaCard";
+
 
 function BuildPizza(props) {
   const [totalToppingsPrice, settotalToppingsPrice] = useState(0);

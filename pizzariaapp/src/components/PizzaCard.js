@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect ,useState} from "react";
+import { toast } from 'react-toastify';
+
 
 function PizzaCard(props) {
-  // const [pizzaData]=props.PizzaData
-  // console.log("second", props);
+    // console.log(props.shoppingCart)
+    const [cartStatus, setcartStatus] = useState('Add to cart')
+    var cartList=[]
+    props.shoppingCart.forEach(item=>{
+      cartList.push(item.id)
+    })
+
+  const handleAddToCart=(e,pizzaId)=>{
+    e.preventDefault()
+    setcartStatus('Added')
+    fetch(`http://localhost:5000/add_to_cart/${pizzaId}`,{
+      method:'get',
+      headers:{
+        "Content-Type":"application/json"
+      }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      toast.success('Pizza added to cart')
+      console.log(data)
+    })
+  }
+
   return (
     <div className="pizzacard">
 
@@ -40,7 +63,7 @@ function PizzaCard(props) {
           <img src={props.pizzaData.image} alt="pizza" />
         </div>
         <div>
-          <button>Add to cart</button>
+          <button onClick={(e)=>handleAddToCart(e,props.pizzaData.id)}>{cartStatus}</button>
         </div>
       </div>
 

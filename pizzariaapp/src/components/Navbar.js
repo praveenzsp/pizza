@@ -40,10 +40,11 @@ function Navbar() {
               </li>
             </ul>
             <form className="d-flex" role="search">
+              <Link to='/shoppingcart'>
               <button className="btn-primary" type="submit">
               <i className="fa-solid fa-cart-shopping"></i>
                 Shopping Cart
-              </button>
+              </button></Link>
             </form>
           </div>
         </div>
